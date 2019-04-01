@@ -1,24 +1,24 @@
 from solver import AStarSolver
 from heuristic import h_manhattan, h_misplaced
+from generator import generate_puzzle
+
+import numpy as np
 
 
-def generate_puzzle():
-    return str([
-        [1, 2, 6, 3],
-        [4, 9, 5, 7],
-        [8, 13, 11, 15],
-        [12, 14, 0, 10]
-    ])
+def print_board(board):
+    print(np.matrix(eval(board)))
 
 
 def print_result(result):
-    import numpy as np
     import os
     import time
+
+    print("Solution found! It contains {} steps. Press enter to print result".format(len(result)))
+    input()
     for step in result:
         os.system('clear')
-        print(np.matrix(eval(step)))
-        time.sleep(0.2)
+        print_board(step)
+        time.sleep(0.12)
 
 
 if __name__ == '__main__':
@@ -30,7 +30,9 @@ if __name__ == '__main__':
     ])
 
     solver = AStarSolver(h_manhattan, final_state)
-    puzzle = generate_puzzle()
+    puzzle = generate_puzzle(s)
+    print("Try to solve this puzzle:")
+    print_board(puzzle)
     res = solver.solve(puzzle)
     print_result(res)
 

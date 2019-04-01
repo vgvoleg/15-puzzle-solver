@@ -1,5 +1,5 @@
 
-class AStarSolver():
+class AStarSolver:
     def __init__(self, heuristic, final):
         self.heuristic = heuristic
         self.final = final
@@ -28,7 +28,7 @@ class AStarSolver():
                 front.append(newpath)
                 expanded.append(last_node)
             expanded_nodes += 1
-
+            print(expanded_nodes)
         return path[1:]
 
     def _moves(self, mat):
